@@ -1,4 +1,4 @@
-import { Student, UserName, Guardian, LocalGuardian, LocalGuardian } from './student/student.interface';
+import { Student, UserName, Guardian, LocalGuardian } from './student/student.interface';
 import { Schema, model, connect } from 'mongoose';
 
 
@@ -47,3 +47,6 @@ const studentSchema = new Schema<Student>({
     profileImg: { type: String },
     isActive: ['active', "inActive"]
 })
+
+
+export const student = model<Student>("Student", studentSchema)
