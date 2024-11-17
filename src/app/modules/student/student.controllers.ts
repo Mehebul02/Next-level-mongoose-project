@@ -1,14 +1,15 @@
+import { Student } from './student.interface';
 import { Request, Response } from "express";
 import { studentServices } from "./student.servise";
 
 const createStudent = async (req: Request, res: Response) => {
 
     try {
-        const student = req.body
+        const { student: studentData } = req.body;
 
         // will call service func send with data 
 
-        const result = await studentServices.createStudentIntoDB(student)
+        const result = await studentServices.createStudentIntoDB(studentData)
         // user response 
 
         res.status(200).json({

@@ -1,6 +1,9 @@
-import { express } from 'express';
+import express from 'express'; // Default import for express
 import { studentController } from './student.controllers';
 
-const router = express.Router()
-// will for controller  fun
-router.post('/create-student', studentController.createStudent)
+const router = express.Router(); // Use express.Router() directly
+
+// Define routes
+router.post('/create-student', studentController.createStudent);
+
+export const studentRoutes = router;
