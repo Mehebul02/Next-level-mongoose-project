@@ -11,7 +11,7 @@ export type Guardian = {
 
 }
 export type UserName = {
-    name: string;
+    firstName: string;
     middleName: string;
     lastName: string;
 };
@@ -35,8 +35,7 @@ export type Student = {
     presentAddress: string;
     permanentAddress: string;
     guardian: Guardian;
-    localGuardian:LocalGuardian;
-
-    profileImg:string;
-    isActive:'active'|'inActive'
+    localGuardian: LocalGuardian;
+    profileImg: string;
+    isActive: 'active' | 'inActive'
 }
