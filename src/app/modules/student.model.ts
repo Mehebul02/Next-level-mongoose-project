@@ -4,8 +4,12 @@ import { Schema, model } from 'mongoose';
 const UserSchema = new Schema<UserName>(
     {
         firstName: {
-            type: String, required: [true, 'First Name is required'], trim: true, validate: function (value) {
-                console.log(value);
+            type: String, required: [true, 'First Name is required'], trim: true, validate: {
+                validator: function (value: string) {
+                    const firstName = value.charAt(0).toUpperCase() + value.slice(1);
+
+                    return firstName === value
+                }
             }
         },
         middleName: { type: String, required: [true, 'Middle Name is required'] },
