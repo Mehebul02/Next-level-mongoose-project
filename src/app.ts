@@ -13,9 +13,7 @@ app.use(cors());
 app.use("/api/v1/students", studentRoutes)
 
 app.get("/", (req: Request, res: Response) => {
-  const a = 44;
-
-  res.send(a);
+  res.status(200).send("Success");
 });
 
 export default app;
