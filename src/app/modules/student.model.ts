@@ -4,9 +4,9 @@ import { Schema, model, connect } from 'mongoose';
 
 const UserSchema = new Schema<UserName>(
     {
-        firstName: { type: String, required: true },
-        middleName: { type: String, required: true },
-        lastName: { type: String, required: true },
+        firstName: { type: String, required: [true, 'First Name is required'] },
+        middleName: { type: String, required: [true, 'Middle Name is required'] },
+        lastName: { type: String, required: [true, 'Last Name is required'] },
 
     },
 )
@@ -33,19 +33,42 @@ const LocalGuardian = new Schema<LocalGuardian>(
 
 
 const studentSchema = new Schema<Student>({
-    id: { type: String },
-    name: UserSchema,
-    gender: ['male', 'female'],
+    id: { type: String , required:true, unique:true},
+    name: {
+        type: UserSchema,
+        required: true,
+    },
+    gender: {
+        type: String,
+        enum: {
+            values: ['male', 'female', "other"],
+            message: "{VALUE} is not valid"
+        },
+        required: true
+
+    },
     dateOfBirth: { type: String, required: true },
     email: { type: String, required: true },
     emergencyContactNo: { type: String, required: true },
-    bloodGroup: ['A+', 'A-', 'O+', 'O-'],
+    bloodGroup: {
+        type: String,
+        enum: ['A+', 'A-', 'O+', 'O-']
+    },
     presentAddress: { type: String, required: true },
     permanentAddress: { type: String, required: true },
-    guardian: Guardian,
-    localGuardian: LocalGuardian,
+    guardian: {
+        type: Guardian,
+        required: true
+    },
+    localGuardian: {
+        type: LocalGuardian,
+    },
     profileImg: { type: String },
-    isActive: ['active', "inActive"]
+    isActive: {
+        type: String,
+        enum: ['active', "inActive"],
+        default: 'active'
+    }
 })
 
 
